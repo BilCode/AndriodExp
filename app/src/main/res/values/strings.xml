@@ -4,5 +4,7 @@
     <string name="app_name">My Application</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_daggar2">Daggar2Activity</string>
+    <string name="title_activity_dagger_test2">DaggerTest2Activity</string>
 
 </resources>
