@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/MyApplication.iml" filepath="$PROJECT_DIR$/MyApplication.iml" />
-      <module fileurl="file://$PROJECT_DIR$/libs/PagerSliding/PagerSliding.iml" filepath="$PROJECT_DIR$/libs/PagerSliding/PagerSliding.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AndriodExp.iml" filepath="$PROJECT_DIR$/AndriodExp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libs/pagersliding/PagerSliding.iml" filepath="$PROJECT_DIR$/libs/pagersliding/PagerSliding.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/libs/PagerSliding/library/library.iml" filepath="$PROJECT_DIR$/libs/PagerSliding/library/library.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libs/pagersliding/library/library.iml" filepath="$PROJECT_DIR$/libs/pagersliding/library/library.iml" />
       <module fileurl="file://$PROJECT_DIR$/libs/libs.iml" filepath="$PROJECT_DIR$/libs/libs.iml" />
     </modules>
   </component>
