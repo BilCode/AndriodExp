@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
         fetchFromGoogle = fetchFromGoogle.subscribeOn(Schedulers.newThread());
         fetchFromYahoo = fetchFromYahoo.subscribeOn(Schedulers.newThread());
 
-        fetchFromGoogle
+       /* fetchFromGoogle
                 .subscribeOn(Schedulers.newThread()) // Create a new Thread
                 .observeOn(AndroidSchedulers.mainThread()) // Use the UI thread
                 .subscribe(new Action1<String>() {
@@ -94,18 +94,28 @@ public class MainActivity extends AppCompatActivity {
                     public void call(String s) {
                        Log.d("My Action"," Google : "+s);
                     }
-                });
+                });*/
+
 
         Observable<String> zipped
                 = Observable.zip(fetchFromGoogle, fetchFromYahoo, new Func2<String, String, String>() {
             @Override
             public String call(String google, String yahoo) {
                 // Do something with the results of both threads
-                return "Google "+google + "\n" + "okhttp "+yahoo;
+                return "Google "+google.substring(0,1000) + "\n" + "okhttp "+yahoo.substring(0,1000);
             }
         }).observeOn(AndroidSchedulers.mainThread()); // Use the UI thread;
 
+
         zipped.subscribe(new Action1<String>() {
+            @Override
+            public void call(String s) {
+                Log.d("My Action"," Google and okhttp : "+s);
+            }
+        });
+
+        Observable<String> concatenated = Observable.concat(fetchFromGoogle, fetchFromYahoo);// Emit the results one after another
+        concatenated.subscribe(new Action1<String>() {
             @Override
             public void call(String s) {
                 Log.d("My Action"," Google and okhttp : "+s);
