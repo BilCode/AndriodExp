@@ -3,6 +3,8 @@ package com.example.bilal_pc.myapplication.rxjava;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.bilal_pc.myapplication.R;
 
@@ -13,21 +15,38 @@ import okhttp3.Request;
 import okhttp3.Response;
 import rx.Observable;
 import rx.Observer;
-import rx.Subscriber;
-import rx.Subscription;
-import rx.android.schedulers.AndroidSchedulers;
+import rx.android.view.OnClickEvent;
+import rx.android.view.ViewObservable;
 import rx.functions.Action1;
-import rx.functions.Func1;
-import rx.functions.Func2;
-import rx.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity {
+
+    Button btnrxjava;
+    TextView tvResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
-        Observable<String> myObservable
+
+        btnrxjava= (Button) findViewById(R.id.btnrxjava);
+        tvResult= (TextView) findViewById(R.id.tvResult);
+
+        Observable<OnClickEvent> clicksObservable
+                = ViewObservable.clicks(btnrxjava); // Create a ViewObservable for the Button
+
+        clicksObservable
+                .skip(4)    // Skip the first 4 clicks
+                .subscribe(new Action1<OnClickEvent>() {
+                    @Override
+                    public void call(OnClickEvent onClickEvent) {
+                        Log.d("Click Action", "Clicked!");
+                        tvResult.append("\n Clicked");
+                        // Printed from the fifth click onwards
+                    }
+                });
+
+       /* Observable<String> myObservable
                 = Observable.just("Hello"); // Emits "Hello
         Subscription mySubscription = myObservable.subscribe(myObserver);
         Subscription mySubscription1 = myObservable.subscribe(myAction);
@@ -96,8 +115,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });*/
 
-
-        Observable<String> zipped
+      /*  Observable<String> zipped
                 = Observable.zip(fetchFromGoogle, fetchFromYahoo, new Func2<String, String, String>() {
             @Override
             public String call(String google, String yahoo) {
@@ -105,7 +123,6 @@ public class MainActivity extends AppCompatActivity {
                 return "Google "+google.substring(0,1000) + "\n" + "okhttp "+yahoo.substring(0,1000);
             }
         }).observeOn(AndroidSchedulers.mainThread()); // Use the UI thread;
-
 
         zipped.subscribe(new Action1<String>() {
             @Override
@@ -120,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
             public void call(String s) {
                 Log.d("My Action"," Google and okhttp : "+s);
             }
-        });
+        });*/
     }
 
     Observer<String> myObserver = new Observer<String>() {
